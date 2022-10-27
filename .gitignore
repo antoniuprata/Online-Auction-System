@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-/node_modules
+frontend/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -21,6 +21,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
+frontend/.vscode/*
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -29,6 +30,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
+frontend/.angular/cache
 /.angular/cache
 .sass-cache/
 /connect.lock
