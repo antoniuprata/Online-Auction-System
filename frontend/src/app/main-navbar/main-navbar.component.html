@@ -29,33 +29,108 @@
       #basicNavbar="mdbCollapse"
     >
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-            >Disabled</a
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li mdbDropdown class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle active"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            mdbDropdownToggle
+            aria-expanded="false"
           >
+            Home
+          </a>
+          <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">Action</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Another action</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">How it works</a>
+        </li>
+        <li mdbDropdown class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle active"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            mdbDropdownToggle
+            aria-expanded="false"
+          >
+            Browse products
+          </a>
+          <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">Action</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Another action</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li>
+          </ul>
         </li>
       </ul>
       <!-- Left links -->
+      <ul class="navbar-nav ms-auto">
+        <!-- Avatar -->
+        <li mdbDropdown class="nav-item dropdown dropstart">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            mdbDropdownToggle
+            aria-expanded="false"
+          >
+            <img
+              src="https://mdbootstrap.com/img/Photos/Avatars/img (10).webp"
+              class="rounded-circle"
+              height="22"
+              alt=""
+              loading="lazy"
+            />
+          </a>
+          <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">My profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
       <!-- Search form -->
-      <form class="d-flex input-group w-auto">
+      <!-- <form class="d-flex input-group w-auto">
         <input
           type="search"
           class="form-control"
-          placeholder="Search..."
+          placeholder="🔍Search..."
           aria-label="Search"
         />
         <button class="btn btn-outline-primary" type="button">
           Search
         </button>
-      </form>
+      </form> -->
+      <!-- Avatar -->
+
     </div>
     <!-- Collapsible wrapper -->
   </div>
