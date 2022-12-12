@@ -1,10 +1,13 @@
 package com.demo.AuctionSystemBE.controllers;
 
+import com.demo.AuctionSystemBE.models.Auction;
 import com.demo.AuctionSystemBE.models.User;
 import com.demo.AuctionSystemBE.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -13,18 +16,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping
     public List<User> getUsers(){return  userService.findAllUsers();}
 
-    @PostMapping(value = "/new/{name}/{email}/{password}/{phone}")
-    public User create(@PathVariable String name,@PathVariable String email,@PathVariable String password,@PathVariable String phone)
+
+    @PostMapping(value = "/new", consumes = {"application/json"})
+    public User createUser(@RequestBody User newUser) throws Exception
     {
-        User user = new User();
-        user.setName(name);
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setPassword(password);
-        return userService.saveUser(user);
+        if(newUser.getEmail().isEmpty() || newUser.getPassword().isEmpty() || newUser.getName().isEmpty())
+            throw new Exception("Missing required fields");
+
+        return userService.saveUser(newUser);
     }
+
 
 }

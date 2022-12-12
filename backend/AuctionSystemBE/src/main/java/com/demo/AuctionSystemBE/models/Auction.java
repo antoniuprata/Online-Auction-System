@@ -10,6 +10,7 @@ import java.util.List;
 public class Auction {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="schemaproiecttw.auction_id_seq")
     private Long id;
 
     @ManyToOne

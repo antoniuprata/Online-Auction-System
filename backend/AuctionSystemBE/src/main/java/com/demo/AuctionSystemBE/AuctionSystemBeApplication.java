@@ -10,5 +10,4 @@ public class AuctionSystemBeApplication {
 		SpringApplication.run(AuctionSystemBeApplication.class, args);
 	}
 
-
 }

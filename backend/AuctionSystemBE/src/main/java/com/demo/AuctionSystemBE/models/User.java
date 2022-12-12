@@ -9,10 +9,11 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(generator="user_id_seq")
+    @SequenceGenerator(name="user_id_seq", sequenceName = "schemaproiecttw.user_id_seq")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "email")

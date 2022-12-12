@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 public class WatchList {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="schemaproiecttw.watchlist_id_seq")
     private Long id;
 
     @ManyToOne

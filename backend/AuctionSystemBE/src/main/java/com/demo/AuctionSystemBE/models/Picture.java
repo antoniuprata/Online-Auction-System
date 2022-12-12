@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 public class Picture {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="schemaproiecttw.picture_id_seq")
     private Long id;
 
     @ManyToOne

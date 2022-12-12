@@ -11,6 +11,7 @@ import java.util.List;
 public class Obj {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="schemaproiecttw.object_id_seq")
     private Long id;
 
     @ManyToOne

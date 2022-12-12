@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 public class Bid {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="schemaproiecttw.bid_id_seq")
     private Long id;
 
     @ManyToOne
