@@ -3,10 +3,10 @@
   <!-- Container wrapper -->
   <div class="container-fluid">
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="home">
       <img
         src="assets/logo.png"
-        height="50"
+        height="60"
         alt=""
       />
     </a>
@@ -30,39 +30,18 @@
     >
       <!-- Left links -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li mdbDropdown class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle active"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            mdbDropdownToggle
-            aria-expanded="false"
-          >
-            Home
-          </a>
-          <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" href="#">Action</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Another action</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">About us</a>
+          <a class="nav-link active" aria-current="page" href="about-us">About us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">How it works</a>
+          <a class="nav-link active" href="how-it-works">How it works</a>
         </li>
         <li mdbDropdown class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle active"
-            href="#"
             id="navbarDropdownMenuLink"
             role="button"
             mdbDropdownToggle
@@ -72,7 +51,7 @@
           </a>
           <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="browse-products">Action</a>
             </li>
             <li>
               <a class="dropdown-item" href="#">Another action</a>
@@ -89,7 +68,6 @@
         <li mdbDropdown class="nav-item dropdown dropstart">
           <a
             class="nav-link dropdown-toggle d-flex align-items-center"
-            href="#"
             id="navbarDropdownMenuLink"
             role="button"
             mdbDropdownToggle
@@ -111,7 +89,7 @@
               <a class="dropdown-item" href="#">Settings</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="login-form">Login</a>
             </li>
           </ul>
         </li>
