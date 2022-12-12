@@ -26,11 +26,27 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import { HomeComponent } from './home/home.component';
+import { AuctionItemsComponent } from './auction-items/auction-items.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { BrowseProductsComponent } from './browse-products/browse-products.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    HomeComponent,
+    AuctionItemsComponent,
+    AboutUsComponent,
+    HowItWorksComponent,
+    BrowseProductsComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
