@@ -18,6 +18,7 @@ public class Obj {
 
     @ManyToOne
     @JoinColumn(name = "idauction", referencedColumnName = "id")
+    @JsonIgnore
     private Auction auction;
 
     @Column(name = "title")

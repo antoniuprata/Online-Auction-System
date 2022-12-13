@@ -18,7 +18,7 @@ public class AuctionController {
     @GetMapping
     public List<Auction> getAuctions(){return  auctionService.findAllAuctions();}
 
-    @GetMapping(value = "/byuser/{id}")
+    @GetMapping(value = "/byuser/{userEmail}")
     public List<Auction> getAuctionsByUserEmail(@PathVariable String userEmail){
         return auctionService.findAllAuctionsByUserEmail(userEmail);
     }
