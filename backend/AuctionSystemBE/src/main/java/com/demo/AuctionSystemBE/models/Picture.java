@@ -1,11 +1,13 @@
 package com.demo.AuctionSystemBE.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name = "picture", schema = "schemaproiecttw")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Picture {
     @Id
     @Column(name = "id")

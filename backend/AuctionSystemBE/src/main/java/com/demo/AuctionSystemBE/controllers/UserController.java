@@ -1,13 +1,11 @@
 package com.demo.AuctionSystemBE.controllers;
 
-import com.demo.AuctionSystemBE.models.Auction;
 import com.demo.AuctionSystemBE.models.User;
+import com.demo.AuctionSystemBE.models.UserLogin;
 import com.demo.AuctionSystemBE.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,10 +14,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping
     public List<User> getUsers(){return  userService.findAllUsers();}
 
+    @GetMapping(value = "/{id}")
+    public User getUserById(@PathVariable Long id){
+        return userService.findById(id);
+    }
+
+    @GetMapping(value = "/login")
+    public User userLogin(@RequestBody UserLogin userLogin){
+        return userService.userLogin(userLogin);
+    }
 
     @PostMapping(value = "/new", consumes = {"application/json"})
     public User createUser(@RequestBody User newUser) throws Exception
@@ -29,6 +35,7 @@ public class UserController {
 
         return userService.saveUser(newUser);
     }
+
 
 
 }

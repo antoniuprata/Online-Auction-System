@@ -1,6 +1,7 @@
 package com.demo.AuctionSystemBE.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "object", schema = "schemaproiecttw")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Obj {
     @Id
     @Column(name = "id")

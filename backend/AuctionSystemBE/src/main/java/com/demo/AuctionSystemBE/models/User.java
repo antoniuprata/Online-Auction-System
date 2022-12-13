@@ -1,16 +1,20 @@
 package com.demo.AuctionSystemBE.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "user",  schema = "schemaproiecttw")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id
     @GeneratedValue(generator="user_id_seq")
     @SequenceGenerator(name="user_id_seq", sequenceName = "schemaproiecttw.user_id_seq")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false, length = 50)
@@ -35,6 +39,7 @@ public class User {
     private List<Bid> bids;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Auction> auctions;
 
     public User() {

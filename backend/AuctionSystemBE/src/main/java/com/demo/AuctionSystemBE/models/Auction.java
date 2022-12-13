@@ -1,12 +1,14 @@
 package com.demo.AuctionSystemBE.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "auction", schema = "schemaproiecttw")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Auction {
     @Id
     @Column(name = "id")
@@ -15,7 +17,6 @@ public class Auction {
 
     @ManyToOne
     @JoinColumn(name = "iduser", referencedColumnName = "id")
-    @JsonIgnore
     private User user;
 
     @Column(name = "title")
