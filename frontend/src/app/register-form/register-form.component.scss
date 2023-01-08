@@ -24,7 +24,7 @@ $primary: #79cec7;
 }
 
 .wrapper {
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   position: absolute;
   top: 50%;
@@ -85,6 +85,9 @@ $primary: #79cec7;
     transition: border-width 0.2s ease;
     border-radius: 2px;
     color: #ccc;
+    &::placeholder {
+      color: rgb(192, 192, 192);
+    }
 
     &+ i.fa {
         color: #fff;
