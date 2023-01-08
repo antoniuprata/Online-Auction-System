@@ -34,6 +34,9 @@ import { BrowseProductsComponent } from './browse-products/browse-products.compo
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { ProductComponent } from './product/product.component';
+import { BrowsePaintingsComponent } from './browse-paintings/browse-paintings.component';
+import { BrowseSculpturesComponent } from './browse-sculptures/browse-sculptures.component';
+import { ViewListingComponent } from './view-listing/view-listing.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { ProductComponent } from './product/product.component';
     LoginFormComponent,
     RegisterFormComponent,
     ProductComponent,
+    BrowsePaintingsComponent,
+    BrowseSculpturesComponent,
+    ViewListingComponent,
   ],
   imports: [
     BrowserModule,
