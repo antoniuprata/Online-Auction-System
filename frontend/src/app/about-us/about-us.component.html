@@ -1,44 +1,47 @@
 <div class="about-section">
+  <div class="bg-text" @fadeInOut *ngIf="isShown">
   <h1>About Us Page</h1>
   <p>Some text about who we are and what we do.</p>
+  </div>
   <p></p>
 </div>
 
 <h2 style="text-align:center">Our Team</h2>
-<div class="row">
+
+<div class="row" @fadeInOut *ngIf="isShown">
   <div class="column">
     <div class="card">
       <img src="/assets/about-us/team1.jpg" alt="Mihai" style="width:100%">
       <div class="container">
         <h2>Mihai Osan</h2>
         <p class="title">Backend Developer</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>Some text that describes me.</p>
         <p>mihai.osan@example.com</p>
         <p><button class="button">Contact</button></p>
       </div>
     </div>
   </div>
 
-  <div class="column">
+  <div class="column" @fadeInOut *ngIf="isShown">
     <div class="card">
       <img src="/assets/about-us/team2.jpg" alt="Antoniu" style="width:100%">
       <div class="container">
         <h2>Antoniu Prata</h2>
         <p class="title">Designer & Frontend Developer</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>Some text that describes me.</p>
         <p>antoniu.prata@example.com</p>
         <p><button class="button">Contact</button></p>
       </div>
     </div>
   </div>
 
-  <div class="column">
+  <div class="column" @fadeInOut *ngIf="isShown">
     <div class="card">
       <img src="/assets/about-us/team3.jpg" alt="Ion" style="width:100%">
       <div class="container">
         <h2>Ion Popescu</h2>
         <p class="title">Backend Developer</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>Some text that describes me.</p>
         <p>ion.popescu@example.com</p>
         <p><button class="button">Contact</button></p>
       </div>
