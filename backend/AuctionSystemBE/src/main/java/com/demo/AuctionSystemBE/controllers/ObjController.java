@@ -16,11 +16,7 @@ public class ObjController {
 
     @GetMapping
     public List<Obj> getObjs(){return  objService.findAllObjs();}
-
-    @GetMapping(value = "/byUserEmail/{userEmail}")
-    public List<Obj> getObjectsByUserEmail(@PathVariable String userEmail){
-        return objService.findAllObjectsByUserEmail(userEmail);
-    }
+    
 
     @PostMapping(value="/new")
     public void create(@RequestBody final Obj obj){
