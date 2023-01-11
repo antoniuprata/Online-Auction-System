@@ -1,6 +1,5 @@
 package com.demo.AuctionSystemBE.services;
 
-import com.demo.AuctionSystemBE.models.Auction;
 import com.demo.AuctionSystemBE.models.Obj;
 import com.demo.AuctionSystemBE.repositories.ObjRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +23,10 @@ public class ObjService {
         return objs;
     }
 
-    public List<Obj> findAllObjectsByAuction(Long id){
-        final List<Obj> objs = new ArrayList<>();
-        objRepository.findAllObjectsByAuction(id).forEach(obj -> objs.add(obj));
-        return objs;
+    public List<Obj> findAllObjectsByUserEmail(String email){
+        final List<Obj> objects = new ArrayList<>();
+        objRepository.findAllObjectsByEmail(email).forEach(object -> objects.add(object));
+        return objects;
     }
 
     public Obj updateObj(Long id, final Obj obj){

@@ -30,7 +30,7 @@ public class User {
     private String phone;
 
     @Column(name = "profilepicture")
-    private String profilePicture;
+    private byte[] profilePicture;
 
     @OneToMany(mappedBy = "user")
     private List<WatchList> watchLists;
@@ -40,7 +40,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<Auction> auctions;
+    private List<Obj> objects;
 
     public User() {
     }
@@ -85,11 +85,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getProfilePicture() {
+    public byte[] getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(String profilePicture) {
+    public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
     }
 
@@ -109,11 +109,11 @@ public class User {
         this.bids = bids;
     }
 
-    public List<Auction> getAuctions() {
-        return auctions;
+    public List<Obj> getObjects() {
+        return objects;
     }
 
-    public void setAuctions(List<Auction> auctions) {
-        this.auctions = auctions;
+    public void setAuctions(List<Obj> auctions) {
+        this.objects = objects;
     }
 }

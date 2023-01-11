@@ -1,19 +1,19 @@
 package com.demo.AuctionSystemBE.repositories;
 
-import com.demo.AuctionSystemBE.models.Auction;
-import com.demo.AuctionSystemBE.models.User;
+import com.demo.AuctionSystemBE.models.Obj;
+import com.demo.AuctionSystemBE.models.WatchList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface AuctionRepository extends JpaRepository<Auction, Long> {
+public interface WatchListRepository extends JpaRepository<WatchList, Long> {
 
     @Transactional
-    @Query("select a from Auction a join a.user u  where u.email = :email")
-    List<Auction> findAllAuctionsByEmail(String email);
+    @Query("select w from WatchList w join w.user u  where u.email = :email")
+    List<WatchList> findAllWatchListsObjectsByEmail(String email);
+
 }

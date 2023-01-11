@@ -22,7 +22,6 @@ public class WatchList {
 
     @ManyToOne
     @JoinColumn(name = "idobject", referencedColumnName = "id")
-    @JsonIgnore
     private Obj object;
 
     @Column(name = "date")

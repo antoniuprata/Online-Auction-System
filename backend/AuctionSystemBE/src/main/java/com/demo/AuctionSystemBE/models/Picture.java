@@ -19,8 +19,8 @@ public class Picture {
     @JsonIgnore
     private Obj object;
 
-    @Column(name = "path")
-    private String path;
+    @Column(name = "image")
+    private byte[] image;
 
     public Picture() {
     }
@@ -41,12 +41,12 @@ public class Picture {
         this.object = object;
     }
 
-    public String getPath() {
-        return path;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
 }

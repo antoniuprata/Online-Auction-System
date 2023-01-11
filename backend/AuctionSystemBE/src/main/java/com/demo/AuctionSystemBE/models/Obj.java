@@ -17,9 +17,9 @@ public class Obj {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "idauction", referencedColumnName = "id")
+    @JoinColumn(name = "iduser", referencedColumnName = "id")
     @JsonIgnore
-    private Auction auction;
+    private User user;
 
     @Column(name = "title")
     private String title;
@@ -56,12 +56,12 @@ public class Obj {
         this.id = id;
     }
 
-    public Auction getAuction() {
-        return auction;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuction(Auction auction) {
-        this.auction = auction;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {

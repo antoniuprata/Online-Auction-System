@@ -1,14 +1,11 @@
 package com.demo.AuctionSystemBE.services;
 
 import com.demo.AuctionSystemBE.models.User;
-import com.demo.AuctionSystemBE.models.UserLogin;
+import com.demo.AuctionSystemBE.models.aux.UserLogin;
 import com.demo.AuctionSystemBE.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
