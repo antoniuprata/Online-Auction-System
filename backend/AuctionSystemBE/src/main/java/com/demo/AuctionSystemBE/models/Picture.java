@@ -20,7 +20,7 @@ public class Picture {
     private Obj object;
 
     @Column(name = "image")
-    private byte[] image;
+    private String image;
 
     public Picture() {
     }
@@ -41,11 +41,11 @@ public class Picture {
         this.object = object;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

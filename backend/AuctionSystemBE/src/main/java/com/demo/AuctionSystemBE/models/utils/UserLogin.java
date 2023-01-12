@@ -1,4 +1,4 @@
-package com.demo.AuctionSystemBE.models.aux;
+package com.demo.AuctionSystemBE.models.utils;
 
 public class UserLogin {
     private String email;

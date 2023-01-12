@@ -15,7 +15,7 @@ public class WatchListController {
     @Autowired
     private WatchListService watchListService;
 
-    @GetMapping(value = "/byUserEmail/{userEmail}")
+    @GetMapping(value = "/{userEmail}")
     public List<WatchList> getWatchListObjectsByUserEmail(@PathVariable String userEmail){
         return watchListService.findAllWatchListObjectsByUserEmail(userEmail);
     }

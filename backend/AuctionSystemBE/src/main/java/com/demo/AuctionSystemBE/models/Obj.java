@@ -33,7 +33,7 @@ public class Obj {
     @Column(name = "enddate")
     private Timestamp endDate;
 
-    @Column(name = "dateadded")
+    @Column(name = "dateadded", insertable=false)
     private Timestamp dateAdded;
 
     @OneToMany(mappedBy = "object")
@@ -44,6 +44,9 @@ public class Obj {
 
     @OneToMany(mappedBy = "object")
     private List<Bid> bids;
+
+    @Column(name = "type")
+    private String category;
 
     public Obj() {
     }
@@ -126,5 +129,13 @@ public class Obj {
 
     public void setBids(List<Bid> bids) {
         this.bids = bids;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

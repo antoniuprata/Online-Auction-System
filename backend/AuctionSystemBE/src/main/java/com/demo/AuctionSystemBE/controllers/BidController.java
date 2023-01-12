@@ -15,17 +15,12 @@ public class BidController {
     @Autowired
     private BidService bidService;
 
-    @GetMapping(value = "/byUserEmail/{userEmail}")
+    @GetMapping(value = "/{userEmail}")
     public List<Bid> getBidsByUserEmail(@PathVariable String userEmail){
         return bidService.findAllBidsByUserEmail(userEmail);
     }
 
-    @GetMapping(value = "/last/{idObject}")
-    public Bid getLastBidForObject(@PathVariable Long idObject){
-        return bidService.findLastBidForObjectId(idObject);
-    }
-
-    @PostMapping(value="/new")
+    @PostMapping()
     public void create(@RequestBody final Bid bid){
         bidService.saveBid(bid);
     }
