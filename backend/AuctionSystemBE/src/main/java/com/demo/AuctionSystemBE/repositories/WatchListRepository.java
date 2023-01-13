@@ -13,7 +13,7 @@ import java.util.List;
 public interface WatchListRepository extends JpaRepository<WatchList, Long> {
 
     @Transactional
-    @Query("select w from WatchList w join w.user u  where u.email = :email")
+    @Query("select w from WatchList w join w.user u where u.email = :email")
     List<WatchList> findAllWatchListsObjectsByEmail(String email);
 
 }
