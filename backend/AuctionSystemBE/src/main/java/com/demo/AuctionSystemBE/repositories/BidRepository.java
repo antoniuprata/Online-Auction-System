@@ -17,7 +17,8 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     List<Bid> findAllBidsByEmail(String email);
 
     @Transactional
-    @Query(nativeQuery = true,value="select Top 1 * from Bid b join object o where o.id = :idObject " +
-           "ORDER BY b.date")
+    @Query(nativeQuery = true,value="SELECT *\n" +
+            "\tFROM schemaproiecttw.bid where\n" +
+            "\tidobject =:idObject order by price desc limit 1;")
     Optional<Bid> findLastBidForObjectId(Long idObject);
 }

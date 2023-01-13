@@ -2,6 +2,7 @@ package com.demo.AuctionSystemBE.controllers;
 
 import com.demo.AuctionSystemBE.models.User;
 import com.demo.AuctionSystemBE.models.utils.UserLogin;
+import com.demo.AuctionSystemBE.models.utils.UserLoginReturn;
 import com.demo.AuctionSystemBE.models.utils.UserSignup;
 import com.demo.AuctionSystemBE.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/login")
-    public User userLogin(@RequestBody UserLogin userLogin){
-        return userService.userLogin(userLogin);
+    public UserLoginReturn userLogin(@RequestBody UserLogin userLogin){
+        User userAllData = userService.userLogin(userLogin);
+        UserLoginReturn user = new UserLoginReturn();
+        user.setEmail(userAllData.getEmail());
+        user.setName(userAllData.getName());
+        user.setPhone(user.getPhone());
+        return user;
     }
 
     @PostMapping(value = "/signup", consumes = {"application/json"})

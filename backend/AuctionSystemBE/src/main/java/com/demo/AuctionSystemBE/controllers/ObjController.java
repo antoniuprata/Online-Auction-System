@@ -1,8 +1,12 @@
 package com.demo.AuctionSystemBE.controllers;
 
+import com.demo.AuctionSystemBE.models.Bid;
 import com.demo.AuctionSystemBE.models.Picture;
 import com.demo.AuctionSystemBE.models.User;
 import com.demo.AuctionSystemBE.models.utils.ProductsAdd;
+import com.demo.AuctionSystemBE.models.utils.ProductsReturn;
+import com.demo.AuctionSystemBE.models.utils.UserLoginReturn;
+import com.demo.AuctionSystemBE.services.BidService;
 import com.demo.AuctionSystemBE.services.ObjService;
 import com.demo.AuctionSystemBE.models.Obj;
 import com.demo.AuctionSystemBE.services.PictureService;
@@ -24,11 +28,45 @@ public class ObjController {
     @Autowired
     private PictureService ps;
 
+    @Autowired
+    private BidService bs;
+
     @GetMapping("/all")
     public List<Obj> getObjs(){return  objService.findAllObjs();}
 
     @GetMapping
-    public List<Obj> getActiveObjs(){return  objService.findAllObjs();}
+    public List<ProductsReturn> getActiveObjs(){
+        List<ProductsReturn> products = new ArrayList<>();
+        List<Obj> activeProducts = objService.findAllActiveObjects();
+        for(Obj prod : activeProducts){
+            ProductsReturn prodRet = new ProductsReturn();
+            prodRet.setId(prod.getId());
+            prodRet.setImages(prod.getPictures());
+            prodRet.setEndTime(prod.getEndDate());
+            prodRet.setDescription(prod.getDescription());
+            prodRet.setCategory(prod.getCategory());
+            prodRet.setTitle(prod.getTitle());
+            prodRet.setStartingPrice(prod.getInitialPrice());
+            Double currentPrice;
+            try{
+                Bid bid = bs.findLastBidForObjectId(prod.getId());
+                currentPrice = bid.getPrice();
+                System.out.println(prod.getId());
+            }
+            catch (Exception e){
+                System.out.println("no");
+                currentPrice = prod.getInitialPrice();
+            }
+            prodRet.setCurrentPrice(currentPrice);
+            UserLoginReturn userRet = new UserLoginReturn();
+            userRet.setPhone(prod.getUser().getPhone());
+            userRet.setEmail(prod.getUser().getEmail());
+            userRet.setName(prod.getUser().getName());
+            prodRet.setUser(userRet);
+            products.add(prodRet);
+        }
+        return products;
+    }
 
     @PostMapping
     public void create(@RequestBody final ProductsAdd productsAdd){

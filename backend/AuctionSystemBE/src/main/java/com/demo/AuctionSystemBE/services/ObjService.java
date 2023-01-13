@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ObjService {
@@ -23,10 +24,25 @@ public class ObjService {
         return objs;
     }
 
+    public List<Obj> findAllActiveObjects(){
+        final List<Obj> objs = new ArrayList<>();
+        objRepository.findAllActiveObjects().forEach(obj -> objs.add(obj));
+        return objs;
+    }
+
     public List<Obj> findAllObjectsByUserEmail(String email){
         final List<Obj> objects = new ArrayList<>();
         objRepository.findAllObjectsByEmail(email).forEach(object -> objects.add(object));
         return objects;
+    }
+
+    public Obj findObjectById(Long id){
+        Optional<Obj> product = objRepository.findObjectById(id);;
+        if (product.isPresent()){
+            return product.get();
+        }
+        else
+            throw new RuntimeException("Object not found");
     }
 
     public Obj updateObj(Long id, final Obj obj){
