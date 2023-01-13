@@ -29,4 +29,18 @@ public class WatchListService {
         watchListRepository.findAllWatchListsObjectsByEmail(email).forEach(watchList -> watchLists.add(watchList));
         return watchLists;
     }
+
+    public String deleteWatchList(String userEmail, Long idProduct) {
+        Optional<WatchList> watchListOpt = watchListRepository.findWatchListObjectByEmailAndObjId(userEmail, idProduct);
+        if(watchListOpt.isPresent()){
+            watchListRepository.delete(watchListOpt.get());
+            return "Product deleted from watchlist";
+        }
+        else
+            return "Product not in watchlist";
+    }
+
+//    public void deleteFromWatchList(String userEmail, Long idProduct){
+//        watchListRepository.deleteWatchListObjectByEmailAndObjId(userEmail,idProduct);
+//    }
 }

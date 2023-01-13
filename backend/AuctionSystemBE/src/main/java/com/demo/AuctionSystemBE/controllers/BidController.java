@@ -3,10 +3,12 @@ package com.demo.AuctionSystemBE.controllers;
 import com.demo.AuctionSystemBE.models.Bid;
 import com.demo.AuctionSystemBE.models.Obj;
 import com.demo.AuctionSystemBE.models.User;
+import com.demo.AuctionSystemBE.models.WatchList;
 import com.demo.AuctionSystemBE.models.utils.BidAdd;
 import com.demo.AuctionSystemBE.services.BidService;
 import com.demo.AuctionSystemBE.services.ObjService;
 import com.demo.AuctionSystemBE.services.UserService;
+import com.demo.AuctionSystemBE.services.WatchListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,6 @@ public class BidController {
 
     @Autowired
     private ObjService objService;
-
 
     @GetMapping(value = "/{userEmail}")
     public List<Bid> getBidsByUserEmail(@PathVariable String userEmail){

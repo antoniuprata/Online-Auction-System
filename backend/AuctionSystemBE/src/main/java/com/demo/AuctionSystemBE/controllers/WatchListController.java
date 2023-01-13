@@ -79,4 +79,9 @@ public class WatchListController {
         watchList.setUser(user);
         return watchListService.saveWatchList(watchList);
     }
+
+    @DeleteMapping("/{userEmail}/{idProduct}")
+    public String delete(@PathVariable String userEmail, @PathVariable Long idProduct){
+       return watchListService.deleteWatchList(userEmail,idProduct);
+    }
 }

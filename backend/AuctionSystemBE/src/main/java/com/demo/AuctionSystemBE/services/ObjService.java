@@ -42,7 +42,16 @@ public class ObjService {
             return product.get();
         }
         else
-            throw new RuntimeException("Object not found");
+            throw new RuntimeException("Product not found");
+    }
+
+    public Obj checkIfActive(Long id){
+        Optional<Obj> product = objRepository.checkIfActive(id);;
+        if (product.isPresent()){
+            return product.get();
+        }
+        else
+            throw new RuntimeException("Product not in auction");
     }
 
     public Obj updateObj(Long id, final Obj obj){

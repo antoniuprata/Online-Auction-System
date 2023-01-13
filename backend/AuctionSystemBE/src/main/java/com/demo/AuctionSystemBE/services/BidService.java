@@ -16,7 +16,18 @@ public class BidService {
     @Autowired
     private BidRepository bidRepository;
 
+    @Autowired
+    private WatchListService watchListService;
+
+    @Autowired
+    private ObjService objService;
+
     public String saveBid(final Bid bid){
+        try {
+            objService.checkIfActive(bid.getObject().getId());
+        }catch (Exception e){
+            return e.getMessage();
+        }
         if (bid.getObject().getUser().equals(bid.getUser()))
             return "You can not bid for your product";
         Optional<Bid> lastBid = bidRepository.findLastBidForObjectId(bid.getObject().getId());
@@ -31,6 +42,10 @@ public class BidService {
             if (bid.getPrice() < bid.getObject().getInitialPrice())
                 return "You need a bigger bid";
         }
+        WatchList watchList = new WatchList();
+        watchList.setUser(bid.getUser());
+        watchList.setObject(bid.getObject());
+        watchListService.saveWatchList(watchList);
         bidRepository.saveAndFlush(bid);
         return "Succes";
     }

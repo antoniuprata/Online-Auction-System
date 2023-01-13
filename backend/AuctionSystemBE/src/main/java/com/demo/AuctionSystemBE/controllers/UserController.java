@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/signup", consumes = {"application/json"})
-    public User createUser(@RequestBody UserSignup newUser) throws Exception
+    public String createUser(@RequestBody UserSignup newUser) throws Exception
     {
         if(newUser.getEmail().isEmpty() || newUser.getPassword().isEmpty() || newUser.getName().isEmpty())
             throw new Exception("Missing required fields");
@@ -39,7 +39,12 @@ public class UserController {
         user.setAuctions(new ArrayList<>());
         user.setWatchLists(new ArrayList<>());
         user.setBids(new ArrayList<>());
-        return userService.saveUser(user);
+        try {
+            userService.saveUser(user);
+        }catch (Exception e){
+            return e.getMessage();
+        }
+        return "Account created";
     }
 
 
