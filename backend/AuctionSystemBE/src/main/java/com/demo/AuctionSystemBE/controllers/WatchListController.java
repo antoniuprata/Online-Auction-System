@@ -71,12 +71,12 @@ public class WatchListController {
     }
 
     @PostMapping()
-    public void create(@RequestBody final WatchListAdd watchListAdd){
+    public String create(@RequestBody final WatchListAdd watchListAdd){
         WatchList watchList = new WatchList();
         User user = userService.findByEmail(watchListAdd.getEmailUser());
         Obj product = objService.findObjectById(watchListAdd.getIdProduct());
         watchList.setObject(product);
         watchList.setUser(user);
-        watchListService.saveWatchList(watchList);
+        return watchListService.saveWatchList(watchList);
     }
 }

@@ -7,14 +7,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WatchListService {
     @Autowired
     private WatchListRepository watchListRepository;
 
-    public WatchList saveWatchList(final WatchList watchList){
-        return watchListRepository.saveAndFlush(watchList);
+    public String saveWatchList(final WatchList watchList){
+        Optional<WatchList> watchListOpt = watchListRepository.findWatchListObjectByEmailAndObjId(watchList.getUser().getEmail(), watchList.getObject().getId());
+        if(watchListOpt.isPresent())
+            return "Product already in watchlist";
+        else{
+            watchListRepository.saveAndFlush(watchList);
+            return "Product added to watchlist";
+        }
     }
 
     public List<WatchList> findAllWatchListObjectsByUserEmail(String email){
