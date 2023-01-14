@@ -93,4 +93,9 @@ public class ObjController {
     public void update(@PathVariable Long id, @RequestBody Obj obj){
         objService.updateObj(id,obj);
     }
+
+    @GetMapping("/{idObject}")
+    public Obj findById(@PathVariable Long idObject){
+        return objService.findObjectById(idObject);
+    }
 }
