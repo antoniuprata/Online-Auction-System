@@ -11,6 +11,16 @@ html {
   box-sizing: inherit;
 }
 
+.bg-image {
+  background-image: url('/assets/about-us-background.jpg');
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .column {
   float: left;
   width: 33.3%;
@@ -21,13 +31,17 @@ html {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 8px;
+  background-color: #d7ebe9;
 }
 
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: #288781;
   color: white;
+
+  h2{
+    color: white;
+  }
 }
 
 .container {
