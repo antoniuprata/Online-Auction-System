@@ -37,6 +37,8 @@ import { ProductComponent } from './product/product.component';
 import { BrowsePaintingsComponent } from './browse-paintings/browse-paintings.component';
 import { BrowseSculpturesComponent } from './browse-sculptures/browse-sculptures.component';
 import { ViewListingComponent } from './view-listing/view-listing.component';
+import { NewListingComponent } from './new-listing/new-listing.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { ViewListingComponent } from './view-listing/view-listing.component';
     MdbScrollspyModule,
     MdbTabsModule,
     MdbTooltipModule,
-    MdbValidationModule
+    MdbValidationModule,
+    NewListingComponent,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

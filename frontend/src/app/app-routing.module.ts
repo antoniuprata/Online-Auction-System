@@ -10,6 +10,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { BrowseSculpturesComponent } from './browse-sculptures/browse-sculptures.component';
 import { BrowsePaintingsComponent } from './browse-paintings/browse-paintings.component';
 import { ViewListingComponent } from './view-listing/view-listing.component';
+import { NewListingComponent } from './new-listing/new-listing.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'browse-sculptures', component: BrowseSculpturesComponent },
   { path: 'login-form', component: LoginFormComponent },
   { path: 'register-form', component: RegisterFormComponent },
-  { path: 'view-listing', component: ViewListingComponent }
+  { path: 'view-listing', component: ViewListingComponent },
+  { path: 'new-listing', component:  NewListingComponent }
 ];
 
 @NgModule({

@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CDECEA;">
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -59,12 +58,7 @@
             <li>
               <a class="dropdown-item" href="browse-sculptures">See only sculptures</a>
             </li>
-            <!-- <li>
-              <a class="dropdown-item" href="#">Another action</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li> -->
+
           </ul>
         </li>
       </ul>
@@ -88,17 +82,11 @@
             />
           </a>
           <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- <li>
-              <a class="dropdown-item" href="#">My profile</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Settings</a>
-            </li> -->
             <li>
               <a class="dropdown-item" href="login-form">Login</a>
             </li>
             <li>
-              <a class="dropdown-item" href="">Create a new auction</a>
+              <a class="dropdown-item" (click)="openVerticallyCentered(content)">Create a new auction</a>
             </li>
             <li>
               <a class="dropdown-item" href="">My Auctions</a>
@@ -112,24 +100,47 @@
           </ul>
         </li>
       </ul>
-
-      <!-- Search form -->
-      <!-- <form class="d-flex input-group w-auto">
-        <input
-          type="search"
-          class="form-control"
-          placeholder="🔍Search..."
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-primary" type="button">
-          Search
-        </button>
-      </form> -->
       <!-- Avatar -->
-
     </div>
-    <!-- Collapsible wrapper -->
   </div>
-  <!-- Container wrapper -->
 </nav>
-<!-- Navbar -->
+
+<!-- Add new auction modal -->
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Create new auction</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <form [formGroup]="auctionForm">
+
+      <label class="form-label" for="title">Title: </label>
+      <input class="form-input" id="title" type="text" formControlName="title">
+
+      <label class="form-label" for="category">Category: </label>
+      <select class="form-select" id="category" formControlName="category">
+        <option value="painting">Painting</option>
+        <option value="sculpture">Sculpture</option>
+      </select>
+
+      <label class="form-label" for="description">Description: </label>
+      <input class="form-input" id="description" type="text" formControlName="description">
+
+      <label class="form-label" for="startingPrice">Starting price: </label>
+      <input class="form-input" id="startingPrice" type="number" formControlName="startingPrice">
+
+      <label class="form-label" for="endDate">End date: </label>
+      <input class="form-input" id="endDate" type="date" formControlName="endDate">
+
+      <label class="form-label" for="endTime">End time: </label>
+      <input class="form-input" id="endTime" type="time" formControlName="endTime">
+
+      <label class="form-label" for="image">Image: </label>
+      <input class="form-input" id="image" type="file" formControlName="image">
+    </form>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="addAuction()">Add new auction</button>
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
