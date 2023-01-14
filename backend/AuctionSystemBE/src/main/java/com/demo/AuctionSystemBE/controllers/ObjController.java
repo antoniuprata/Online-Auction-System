@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
@@ -54,7 +55,6 @@ public class ObjController {
                 System.out.println(prod.getId());
             }
             catch (Exception e){
-                System.out.println("no");
                 currentPrice = prod.getInitialPrice();
             }
             prodRet.setCurrentPrice(currentPrice);
@@ -94,8 +94,36 @@ public class ObjController {
         objService.updateObj(id,obj);
     }
 
-    @GetMapping("/{idObject}")
-    public Obj findById(@PathVariable Long idObject){
-        return objService.findObjectById(idObject);
+    @GetMapping(value = "/{idObject}")
+    public ProductsReturn findById(@PathVariable Long idObject){
+        Optional<Obj> product = objService.findObjectById(idObject);
+        if (product.isPresent()){
+            Obj prod = product.get();
+            ProductsReturn prodRet = new ProductsReturn();
+            prodRet.setId(prod.getId());
+            prodRet.setImages(prod.getPictures());
+            prodRet.setEndTime(prod.getEndDate());
+            prodRet.setDescription(prod.getDescription());
+            prodRet.setCategory(prod.getCategory());
+            prodRet.setTitle(prod.getTitle());
+            prodRet.setStartingPrice(prod.getInitialPrice());
+            Double currentPrice;
+            try{
+                Bid bid = bs.findLastBidForObjectId(prod.getId());
+                currentPrice = bid.getPrice();
+                System.out.println(prod.getId());
+            }
+            catch (Exception e){
+                currentPrice = prod.getInitialPrice();
+            }
+            prodRet.setCurrentPrice(currentPrice);
+            UserLoginReturn userRet = new UserLoginReturn();
+            userRet.setPhone(prod.getUser().getPhone());
+            userRet.setEmail(prod.getUser().getEmail());
+            userRet.setName(prod.getUser().getName());
+            prodRet.setUser(userRet);
+            return prodRet;
+        }
+        return null;
     }
 }

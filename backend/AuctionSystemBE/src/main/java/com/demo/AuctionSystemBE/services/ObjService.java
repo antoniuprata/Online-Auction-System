@@ -36,13 +36,8 @@ public class ObjService {
         return objects;
     }
 
-    public Obj findObjectById(Long id){
-        Optional<Obj> product = objRepository.findObjectById(id);;
-        if (product.isPresent()){
-            return product.get();
-        }
-        else
-            throw new RuntimeException("Product not found");
+    public Optional<Obj> findObjectById(Long id){
+        return objRepository.findObjectById(id);
     }
 
     public Obj checkIfActive(Long id){
