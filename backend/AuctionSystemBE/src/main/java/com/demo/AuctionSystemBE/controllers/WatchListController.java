@@ -74,10 +74,14 @@ public class WatchListController {
     public String create(@RequestBody final WatchListAdd watchListAdd){
         WatchList watchList = new WatchList();
         User user = userService.findByEmail(watchListAdd.getEmailUser());
-        Obj product = objService.findObjectById(watchListAdd.getIdProduct());
-        watchList.setObject(product);
-        watchList.setUser(user);
-        return watchListService.saveWatchList(watchList);
+        Optional<Obj> product = objService.findObjectById(watchListAdd.getIdProduct());
+        if (product.isPresent()){
+            Obj prod = product.get();
+            watchList.setObject(prod);
+            watchList.setUser(user);
+            return watchListService.saveWatchList(watchList);
+        }
+        return null;
     }
 
     @DeleteMapping("/{userEmail}/{idProduct}")

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bid")
@@ -35,10 +36,14 @@ public class BidController {
     public String create(@RequestBody final BidAdd bidAdd){
         Bid bid = new Bid();
         User user = userService.findByEmail(bidAdd.getUserEmail());
-        Obj product = objService.findObjectById(bidAdd.getIdProduct());
-        bid.setObject(product);
-        bid.setPrice(bidAdd.getPrice());
-        bid.setUser(user);
-        return bidService.saveBid(bid);
+        Optional<Obj> product = objService.findObjectById(bidAdd.getIdProduct());
+        if (product.isPresent()){
+            Obj prod = product.get();
+            bid.setObject(prod);
+            bid.setPrice(bidAdd.getPrice());
+            bid.setUser(user);
+            return bidService.saveBid(bid);
+        }
+        return null;
     }
 }

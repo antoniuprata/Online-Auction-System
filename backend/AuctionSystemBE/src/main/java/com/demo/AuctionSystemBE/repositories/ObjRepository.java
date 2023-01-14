@@ -28,5 +28,4 @@ public interface ObjRepository extends JpaRepository<Obj, Long> {
     @Query(nativeQuery = true, value = "select * from schemaproiecttw.object where enddate>now() and id=:id")
     Optional<Obj>checkIfActive(Long id);
 
-
 }
