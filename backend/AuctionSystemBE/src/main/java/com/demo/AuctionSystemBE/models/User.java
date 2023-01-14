@@ -3,10 +3,12 @@ package com.demo.AuctionSystemBE.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Entity
+@EqualsAndHashCode
 @Table(name = "user",  schema = "schemaproiecttw")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {

@@ -28,7 +28,7 @@ public class Bid {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "date")
+    @Column(name = "date", insertable=false)
     private Timestamp date;
 
     public Bid() {

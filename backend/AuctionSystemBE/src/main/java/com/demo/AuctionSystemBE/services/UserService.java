@@ -1,7 +1,7 @@
 package com.demo.AuctionSystemBE.services;
 
 import com.demo.AuctionSystemBE.models.User;
-import com.demo.AuctionSystemBE.models.aux.UserLogin;
+import com.demo.AuctionSystemBE.models.utils.UserLogin;
 import com.demo.AuctionSystemBE.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

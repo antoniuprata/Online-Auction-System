@@ -2,6 +2,7 @@ package com.demo.AuctionSystemBE.services;
 
 import com.demo.AuctionSystemBE.models.Bid;
 import com.demo.AuctionSystemBE.models.User;
+import com.demo.AuctionSystemBE.models.WatchList;
 import com.demo.AuctionSystemBE.repositories.BidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,38 @@ public class BidService {
     @Autowired
     private BidRepository bidRepository;
 
-    public Bid saveBid(final Bid bid){
-        return bidRepository.saveAndFlush(bid);
+    @Autowired
+    private WatchListService watchListService;
+
+    @Autowired
+    private ObjService objService;
+
+    public String saveBid(final Bid bid){
+        try {
+            objService.checkIfActive(bid.getObject().getId());
+        }catch (Exception e){
+            return e.getMessage();
+        }
+        if (bid.getObject().getUser().equals(bid.getUser()))
+            return "You can not bid for your product";
+        Optional<Bid> lastBid = bidRepository.findLastBidForObjectId(bid.getObject().getId());
+        if(lastBid.isPresent()){
+            Bid lBid = lastBid.get();
+            if (bid.getUser().equals(lBid.getUser()))
+                return "You already bid for this product";
+            if (bid.getPrice() <= lBid.getPrice())
+                return "You need a bigger bid";
+        }
+        else{
+            if (bid.getPrice() < bid.getObject().getInitialPrice())
+                return "You need a bigger bid";
+        }
+        WatchList watchList = new WatchList();
+        watchList.setUser(bid.getUser());
+        watchList.setObject(bid.getObject());
+        watchListService.saveWatchList(watchList);
+        bidRepository.saveAndFlush(bid);
+        return "Succes";
     }
 
     public List<Bid> findAllBids(){

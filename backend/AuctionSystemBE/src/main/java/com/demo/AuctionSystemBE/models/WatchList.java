@@ -24,7 +24,7 @@ public class WatchList {
     @JoinColumn(name = "idobject", referencedColumnName = "id")
     private Obj object;
 
-    @Column(name = "date")
+    @Column(name = "date", insertable=false)
     private Timestamp date;
 
     public WatchList() {
