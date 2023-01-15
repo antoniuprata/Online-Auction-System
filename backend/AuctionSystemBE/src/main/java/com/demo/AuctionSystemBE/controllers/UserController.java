@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/login")
+    @PostMapping(value = "/login")
     public UserLoginReturn userLogin(@RequestBody UserLogin userLogin){
         User userAllData = userService.userLogin(userLogin);
         UserLoginReturn user = new UserLoginReturn();
