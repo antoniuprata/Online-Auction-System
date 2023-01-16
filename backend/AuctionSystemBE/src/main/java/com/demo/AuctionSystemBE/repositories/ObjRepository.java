@@ -26,6 +26,13 @@ public interface ObjRepository extends JpaRepository<Obj, Long> {
 
     @Transactional
     @Query(nativeQuery = true, value = "select * from schemaproiecttw.object where enddate>now() and id=:id")
-    Optional<Obj>checkIfActive(Long id);
+    Optional<Obj> checkIfActive(Long id);
 
+    @Transactional
+    @Query(nativeQuery = true, value = "select * from schemaproiecttw.object where enddate<=now() and id=:id")
+    Optional<Obj> checkIfInactive(Long id);
+
+    @Transactional
+    @Query(nativeQuery = true, value = "select * from schemaproiecttw.object where enddate<=now()")
+    List<Obj> findAllInactiveObjects();
 }

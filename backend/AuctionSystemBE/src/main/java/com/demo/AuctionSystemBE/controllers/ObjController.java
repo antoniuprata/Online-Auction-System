@@ -6,6 +6,7 @@ import com.demo.AuctionSystemBE.models.User;
 import com.demo.AuctionSystemBE.models.utils.ProductsAdd;
 import com.demo.AuctionSystemBE.models.utils.ProductsReturn;
 import com.demo.AuctionSystemBE.models.utils.UserLoginReturn;
+import com.demo.AuctionSystemBE.models.utils.WonProductGet;
 import com.demo.AuctionSystemBE.services.BidService;
 import com.demo.AuctionSystemBE.services.ObjService;
 import com.demo.AuctionSystemBE.models.Obj;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/product")
@@ -33,13 +35,15 @@ public class ObjController {
     private BidService bs;
 
     @GetMapping("/all")
-    public List<Obj> getObjs(){return  objService.findAllObjs();}
+    public List<Obj> getObjs() {
+        return objService.findAllObjs();
+    }
 
     @GetMapping
-    public List<ProductsReturn> getActiveObjs(){
+    public List<ProductsReturn> getActiveObjs() {
         List<ProductsReturn> products = new ArrayList<>();
         List<Obj> activeProducts = objService.findAllActiveObjects();
-        for(Obj prod : activeProducts){
+        for (Obj prod : activeProducts) {
             ProductsReturn prodRet = new ProductsReturn();
             prodRet.setId(prod.getId());
             prodRet.setImages(prod.getPictures());
@@ -49,12 +53,11 @@ public class ObjController {
             prodRet.setTitle(prod.getTitle());
             prodRet.setStartingPrice(prod.getInitialPrice());
             Double currentPrice;
-            try{
+            try {
                 Bid bid = bs.findLastBidForObjectId(prod.getId());
                 currentPrice = bid.getPrice();
                 System.out.println(prod.getId());
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 currentPrice = prod.getInitialPrice();
             }
             prodRet.setCurrentPrice(currentPrice);
@@ -69,7 +72,7 @@ public class ObjController {
     }
 
     @PostMapping
-    public void create(@RequestBody final ProductsAdd productsAdd){
+    public void create(@RequestBody final ProductsAdd productsAdd) {
         Obj obj = new Obj();
         obj.setTitle(productsAdd.getTitle());
         obj.setDescription(productsAdd.getDescription());
@@ -80,7 +83,7 @@ public class ObjController {
         User user = us.findByEmail(productsAdd.getUserEmail());
         obj.setUser(user);
         Obj createdObj = objService.saveObj(obj);
-        for(String img : productsAdd.getImages()){
+        for (String img : productsAdd.getImages()) {
             Picture image = new Picture();
             image.setImage(img);
             image.setObject(createdObj);
@@ -89,15 +92,16 @@ public class ObjController {
         createdObj.setPictures(images);
         objService.updateObj(createdObj.getId(), createdObj);
     }
+
     @PutMapping(value = "{id}")
-    public void update(@PathVariable Long id, @RequestBody Obj obj){
-        objService.updateObj(id,obj);
+    public void update(@PathVariable Long id, @RequestBody Obj obj) {
+        objService.updateObj(id, obj);
     }
 
     @GetMapping(value = "/{idObject}")
-    public ProductsReturn findById(@PathVariable Long idObject){
+    public ProductsReturn findById(@PathVariable Long idObject) {
         Optional<Obj> product = objService.findObjectById(idObject);
-        if (product.isPresent()){
+        if (product.isPresent()) {
             Obj prod = product.get();
             ProductsReturn prodRet = new ProductsReturn();
             prodRet.setId(prod.getId());
@@ -108,12 +112,11 @@ public class ObjController {
             prodRet.setTitle(prod.getTitle());
             prodRet.setStartingPrice(prod.getInitialPrice());
             Double currentPrice;
-            try{
+            try {
                 Bid bid = bs.findLastBidForObjectId(prod.getId());
                 currentPrice = bid.getPrice();
                 System.out.println(prod.getId());
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 currentPrice = prod.getInitialPrice();
             }
             prodRet.setCurrentPrice(currentPrice);
@@ -125,5 +128,42 @@ public class ObjController {
             return prodRet;
         }
         return null;
+    }
+
+    @PostMapping(value = "/wonProducts")
+    public List<ProductsReturn> getWonObjs(@RequestBody WonProductGet wp) {
+        String emailUser = wp.getEmailUser();
+        System.out.println(emailUser);
+        List<ProductsReturn> products = new ArrayList<>();
+        List<Obj> inactiveProducts = objService.findAllInactiveObjects();
+        for (Obj prod : inactiveProducts) {
+            Double currentPrice;
+            String lastBidder = "";
+            try {
+                Bid bid = bs.findLastBidForObjectId(prod.getId());
+                currentPrice = bid.getPrice();
+                lastBidder = bid.getUser().getEmail();
+            } catch (Exception e) {
+                currentPrice = prod.getInitialPrice();
+            }
+            ProductsReturn prodRet = new ProductsReturn();
+            if (lastBidder.equals(emailUser)) {
+                prodRet.setId(prod.getId());
+                prodRet.setImages(prod.getPictures());
+                prodRet.setEndTime(prod.getEndDate());
+                prodRet.setDescription(prod.getDescription());
+                prodRet.setCategory(prod.getCategory());
+                prodRet.setTitle(prod.getTitle());
+                prodRet.setStartingPrice(prod.getInitialPrice());
+                prodRet.setCurrentPrice(currentPrice);
+                UserLoginReturn userRet = new UserLoginReturn();
+                userRet.setPhone(prod.getUser().getPhone());
+                userRet.setEmail(prod.getUser().getEmail());
+                userRet.setName(prod.getUser().getName());
+                prodRet.setUser(userRet);
+                products.add(prodRet);
+            }
+        }
+        return products;
     }
 }

@@ -14,46 +14,52 @@ public class ObjService {
     @Autowired
     private ObjRepository objRepository;
 
-    public Obj saveObj(final Obj obj){
+    public Obj saveObj(final Obj obj) {
         return objRepository.saveAndFlush(obj);
     }
 
-    public List<Obj> findAllObjs(){
+    public List<Obj> findAllObjs() {
         final List<Obj> objs = new ArrayList<>();
         objRepository.findAll().forEach(obj -> objs.add(obj));
         return objs;
     }
 
-    public List<Obj> findAllActiveObjects(){
+    public List<Obj> findAllActiveObjects() {
         final List<Obj> objs = new ArrayList<>();
         objRepository.findAllActiveObjects().forEach(obj -> objs.add(obj));
         return objs;
     }
 
-    public List<Obj> findAllObjectsByUserEmail(String email){
+    public List<Obj> findAllObjectsByUserEmail(String email) {
         final List<Obj> objects = new ArrayList<>();
         objRepository.findAllObjectsByEmail(email).forEach(object -> objects.add(object));
         return objects;
     }
 
-    public Optional<Obj> findObjectById(Long id){
+    public Optional<Obj> findObjectById(Long id) {
         return objRepository.findObjectById(id);
     }
 
-    public Obj checkIfActive(Long id){
-        Optional<Obj> product = objRepository.checkIfActive(id);;
-        if (product.isPresent()){
+    public Obj checkIfActive(Long id) {
+        Optional<Obj> product = objRepository.checkIfActive(id);
+        ;
+        if (product.isPresent()) {
             return product.get();
-        }
-        else
+        } else
             throw new RuntimeException("Product not in auction");
     }
 
-    public Obj updateObj(Long id, final Obj obj){
+    public Obj updateObj(Long id, final Obj obj) {
         return objRepository.save(obj);
     }
 
-    public void deleteObj(final Long id){
+    public void deleteObj(final Long id) {
         objRepository.deleteById(id);
+    }
+
+    public List<Obj> findAllInactiveObjects() {
+        final List<Obj> objs = new ArrayList<>();
+        objRepository.findAllInactiveObjects().forEach(obj -> objs.add(obj));
+        return objs;
     }
 }
