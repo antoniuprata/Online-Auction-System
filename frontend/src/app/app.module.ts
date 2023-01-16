@@ -39,6 +39,10 @@ import { BrowseSculpturesComponent } from './browse-sculptures/browse-sculptures
 import { ViewListingComponent } from './view-listing/view-listing.component';
 import { NewListingComponent } from './new-listing/new-listing.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
+import { WatchlistComponent } from './watchlist/watchlist.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,6 +59,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowsePaintingsComponent,
     BrowseSculpturesComponent,
     ViewListingComponent,
+    MyAuctionsComponent,
+    WatchlistComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +89,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MdbTooltipModule,
     MdbValidationModule,
     NewListingComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

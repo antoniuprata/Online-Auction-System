@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
 declare var anime: any;
 
 const fadeInOut = trigger('fadeInOut', [
@@ -73,5 +74,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.isShown = true;
   }
-
 }

@@ -30,13 +30,13 @@
       <!-- Left links -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="about-us">About us</a>
+          <a class="nav-link active" aria-current="page" routerLink="/about-us">About us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="how-it-works">How it works</a>
+          <a class="nav-link active" routerLink="/how-it-works">How it works</a>
         </li>
         <li mdbDropdown class="nav-item dropdown">
           <a
@@ -50,13 +50,13 @@
           </a>
           <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a class="dropdown-item" href="browse-products">All products</a>
+              <a class="dropdown-item" routerLink="/browse-products">All products</a>
             </li>
             <li>
-              <a class="dropdown-item" href="browse-paintings">See only paintings</a>
+              <a class="dropdown-item" routerLink="/browse-paintings">See only paintings</a>
             </li>
             <li>
-              <a class="dropdown-item" href="browse-sculptures">See only sculptures</a>
+              <a class="dropdown-item" routerLink="/browse-sculptures">See only sculptures</a>
             </li>
 
           </ul>
@@ -83,19 +83,22 @@
           </a>
           <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a class="dropdown-item" href="login-form">Login</a>
+              <a class="dropdown-item" *ngIf="!currentUser" routerLink="/login-form">Login</a>
             </li>
             <li>
-              <a class="dropdown-item" (click)="openVerticallyCentered(content)">Create a new auction</a>
+              <a class="dropdown-item" *ngIf="currentUser" (click)="openVerticallyCentered(content)">Create a new auction</a>
             </li>
             <li>
-              <a class="dropdown-item" href="">My Auctions</a>
+              <a class="dropdown-item" *ngIf="currentUser" routerLink="/my-auctions">My Auctions</a>
             </li>
             <li>
-              <a class="dropdown-item" href="">Watchlist</a>
+              <a class="dropdown-item" *ngIf="currentUser" routerLink="/watchlist">Watchlist</a>
             </li>
             <li>
-              <a class="dropdown-item" href="">Account settings</a>
+              <a class="dropdown-item" *ngIf="currentUser" routerLink="/account-settings">Account settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" *ngIf="currentUser" (click)="logoutCurrentUser()">Logout</a>
             </li>
           </ul>
         </li>
@@ -136,11 +139,12 @@
       <input class="form-input" id="endTime" type="time" formControlName="endTime">
 
       <label class="form-label" for="image">Image: </label>
-      <input class="form-input" id="image" type="file" formControlName="image">
+      <input class="form-input" id="image" type="file" formControlName="image" (change)="handleFileSelect($event)">
     </form>
 	</div>
 	<div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="addAuction()">Add new auction</button>
+    <button [disabled]="loading" type="button" class="btn btn-light" (click)="addAuction()"><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Add new auction</button>
 		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
 	</div>
 </ng-template>

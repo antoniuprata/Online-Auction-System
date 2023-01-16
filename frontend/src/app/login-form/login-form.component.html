@@ -1,18 +1,29 @@
 <div class="bg-image"></div>
 
 <div class="wrapper">
-  <form class="login">
+  <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <p class="title">Log in</p>
+
     <div>Username:</div>
-    <input type="text" placeholder="Username" autofocus/>
+    <input type="text" formControlName="username" placeholder="Username" autofocus/>
     <i class="fa fa-user"></i>
+
     <div>Password:</div>
-    <input type="password" placeholder="Password" />
+    <input type="password" formControlName="password" placeholder="Password" />
     <i class="fa fa-key"></i>
-    <a href="register-form">Don't have an account? Register here</a>
-    <button>
+
+    <a routerLink="/register-form">Don't have an account? Register here</a>
+
+    <!-- <button>
       <i class="spinner"></i>
       <span class="state">Log in</span>
-    </button>
+    </button> -->
+
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Log in
+      </button>
+  </div>
   </form>
 </div>
