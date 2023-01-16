@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-navbar',
@@ -21,7 +22,7 @@ export class MainNavbarComponent implements OnInit {
 
   public base64textString: any = "";
 
-  constructor(private modalService: NgbModal, private authentificationService: AuthenticationService, private http: HttpClient) {}
+  constructor(private modalService: NgbModal, private authentificationService: AuthenticationService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.currentUser = this.authentificationService.currentUserValue;
@@ -41,6 +42,7 @@ export class MainNavbarComponent implements OnInit {
 
   logoutCurrentUser() {
     this.authentificationService.logout();
+    this.router.navigate(['/home']);
     this.authentificationService.reloadPage();
   }
 
@@ -88,7 +90,6 @@ export class MainNavbarComponent implements OnInit {
   _handleReaderLoaded(readerEvt) {
       var binaryString = readerEvt.target.result;
       this.base64textString= btoa(binaryString);
-      console.log(btoa(binaryString));
   }
 
   postNewAuction(title: string, category: string, image: string, description: string, startingPrice: number, endTime: string, userEmail: string) {

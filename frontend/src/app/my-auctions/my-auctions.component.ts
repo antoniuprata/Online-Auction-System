@@ -18,14 +18,12 @@ export class MyAuctionsComponent implements OnInit {
   ngOnInit(): void {
     this.getAuctionItems();
     this.currentUser = this.authentificationService.currentUserValue;
-    console.log(this.currentUser);
   }
 
   getAuctionItems() {
     this.httpClient.get<AuctionItem[]>('http://localhost:8080/product')
       .subscribe((data) => {
         this.auctionItems = data;
-        console.log(this.auctionItems);
       });
   }
 

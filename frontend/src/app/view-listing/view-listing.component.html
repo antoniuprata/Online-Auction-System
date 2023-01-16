@@ -1,9 +1,9 @@
-<div class="background" >
+<div class="background">
 
 <div class="container pb-5"  *ngIf="auctionItem">
   <div class="row">
       <div class="col-lg-5 mt-5">
-          <div class="card mb-3">
+          <div class="mb-3">
               <img class="card-img img-fluid" src="{{'data:image/jpg;base64,' + auctionItem.images[0].image}}" alt="Card image cap" id="product-detail">
           </div>
       </div>
@@ -26,10 +26,12 @@
 
                   <div class="row pb-3 footer">
                     <div class="col d-grid">
-                        <input type="number" class="form-control" id="bid" placeholder="Bid amount">
+                        <input *ngIf="!(auctionItem.user.email === currentUser.email)" type="number" class="form-control" [formControl]="bidFormControl" id="bid" placeholder="Bid amount">
                     </div>
                     <div class="col d-grid">
-                        <button type="submit" class="btn btn-lg" name="submit" value="buy">Bid</button>
+                        <button [disabled]="loading" *ngIf="!(auctionItem.user.email === currentUser.email)" type="submit" class="btn btn-lg" name="submit" value="buy" (click)="bid()">Bid
+                          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        </button>
                     </div>
                 </div>
 
