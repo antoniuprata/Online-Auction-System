@@ -1,13 +1,13 @@
-<div class="background">
+<div class="background" >
 
-<div class="container pb-5">
+<div class="container pb-5"  *ngIf="auctionItem">
   <div class="row">
       <div class="col-lg-5 mt-5">
           <div class="card mb-3">
-              <img class="card-img img-fluid" src="assets/auctions/pictura1.jpg" alt="Card image cap" id="product-detail">
+              <img class="card-img img-fluid" src="{{'data:image/jpg;base64,' + auctionItem.images[0].image}}" alt="Card image cap" id="product-detail">
           </div>
       </div>
-      <div class="col-lg-7 mt-5" *ngIf="auctionItem">
+      <div class="col-lg-7 mt-5">
           <div class="card">
               <div class="card-body">
                   <h1 class="h2">{{auctionItem.title}}</h1>

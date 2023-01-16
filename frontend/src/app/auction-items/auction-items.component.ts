@@ -27,5 +27,4 @@ export class AuctionItemsComponent implements OnInit {
   viewListing(id: number) {
     this.router.navigate(['/view-listing', id]);
   }
-
 }

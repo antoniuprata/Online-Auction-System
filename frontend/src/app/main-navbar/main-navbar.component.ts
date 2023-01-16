@@ -67,6 +67,7 @@ export class MainNavbarComponent implements OnInit {
         this.loading = false;
       }
     );
+    this.loading = false;
   }
 
   get f() {
@@ -87,11 +88,15 @@ export class MainNavbarComponent implements OnInit {
   _handleReaderLoaded(readerEvt) {
       var binaryString = readerEvt.target.result;
       this.base64textString= btoa(binaryString);
+      console.log(btoa(binaryString));
   }
 
   postNewAuction(title: string, category: string, image: string, description: string, startingPrice: number, endTime: string, userEmail: string) {
-    return this.http.post<any>(`http://localhost:8080/product`, { title: title, category: category, image: image, description: description, startingPrice: startingPrice, endTime: endTime, userEmail: userEmail })
+    var images = [];
+    images.push(image);
+    return this.http.post<any>(`http://localhost:8080/product`, { title: title, category: category, images: images, description: description, startingPrice: startingPrice, endTime: endTime, userEmail: userEmail })
             .pipe(map(user => {
+              this.authentificationService.reloadPage();
               return user;
             }));
   }

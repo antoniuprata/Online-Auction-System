@@ -33,7 +33,6 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { BrowseProductsComponent } from './browse-products/browse-products.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
-import { ProductComponent } from './product/product.component';
 import { BrowsePaintingsComponent } from './browse-paintings/browse-paintings.component';
 import { BrowseSculpturesComponent } from './browse-sculptures/browse-sculptures.component';
 import { ViewListingComponent } from './view-listing/view-listing.component';
@@ -55,7 +54,6 @@ import { HttpClientModule } from '@angular/common/http';
     BrowseProductsComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ProductComponent,
     BrowsePaintingsComponent,
     BrowseSculpturesComponent,
     ViewListingComponent,
