@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'browse-sculptures', component: BrowseSculpturesComponent },
   { path: 'login-form', component: LoginFormComponent },
   { path: 'register-form', component: RegisterFormComponent },
-  { path: 'view-listing', component: ViewListingComponent },
+  { path: 'view-listing/:id', component: ViewListingComponent },
   { path: 'new-listing', component:  NewListingComponent },
   { path: 'my-auctions', component:  MyAuctionsComponent },
   { path: 'watchlist', component: WatchlistComponent},

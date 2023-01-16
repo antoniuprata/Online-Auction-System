@@ -37,7 +37,6 @@ export class MainNavbarComponent implements OnInit {
       userEmail: new FormControl(''),
     });
     const current = new Date();
-    console.log(current.toISOString());
   }
 
   logoutCurrentUser() {
@@ -59,7 +58,6 @@ export class MainNavbarComponent implements OnInit {
 
     this.loading = true;
     const endDateTime = new Date(this.f['endDate'].value + " " + this.f['endTime'].value);
-    console.log(endDateTime.toISOString());
     this.postNewAuction(this.f['title'].value, this.f['category'].value, this.base64textString, this.f['description'].value, this.f['startingPrice'].value, endDateTime.toISOString(), this.currentUser.email)
     .pipe(first())
     .subscribe(
