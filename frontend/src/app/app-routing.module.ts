@@ -14,6 +14,7 @@ import { NewListingComponent } from './new-listing/new-listing.component';
 import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { WonAuctionsComponent } from './won-auctions/won-auctions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'view-listing/:id', component: ViewListingComponent },
   { path: 'new-listing', component:  NewListingComponent },
   { path: 'my-auctions', component:  MyAuctionsComponent },
+  { path: 'won-auctions', component:  WonAuctionsComponent },
   { path: 'watchlist', component: WatchlistComponent},
   { path: 'account-settings', component: AccountSettingsComponent}
 ];

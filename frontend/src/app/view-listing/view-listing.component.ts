@@ -41,6 +41,7 @@ export class ViewListingComponent implements OnInit {
       return this.httpClient.post<any>(`http://localhost:8080/bid`, { userEmail: this.currentUser.email, idProduct: this.auctionItem.id, price: price })
       .pipe(map(user => {
         this.authentificationService.reloadPage();
+        console.log(user);
         return user;
       }));
   }

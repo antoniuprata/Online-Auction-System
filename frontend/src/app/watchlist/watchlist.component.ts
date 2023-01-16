@@ -1,4 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { map, first } from 'rxjs';
+import { AuthenticationService } from '../authentication.service';
+import { AuctionItem } from '../model';
 
 @Component({
   selector: 'app-watchlist',
@@ -6,10 +11,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./watchlist.component.scss']
 })
 export class WatchlistComponent implements OnInit {
+  auctionItems: AuctionItem[];
+  currentUser: any;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private router: Router, private authentificationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authentificationService.currentUserValue;
+    this.getAuctionItems();
+  }
+
+  getAuctionItems() {
+    this.httpClient.get<AuctionItem[]>('http://localhost:8080/watchlist/'+this.currentUser.email)
+      .subscribe((data) => {
+        this.auctionItems = data;
+      });
+  }
+
+  viewListing(id: number) {
+    this.router.navigate(['/view-listing', id]);
   }
 
 }

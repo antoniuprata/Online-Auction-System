@@ -1,3 +1,5 @@
+<h1>ONLY SCULPTURES:</h1>
+
 <div *ngFor="let product of auctionItems">
   <div class="card" *ngIf="product.category ==='sculpture'">
     <img src="{{'data:image/jpg;base64,' + product.images[0].image}}">

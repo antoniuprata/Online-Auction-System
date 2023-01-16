@@ -42,6 +42,7 @@ import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WonAuctionsComponent } from './won-auctions/won-auctions.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { HttpClientModule } from '@angular/common/http';
     MyAuctionsComponent,
     WatchlistComponent,
     AccountSettingsComponent,
+    WonAuctionsComponent,
   ],
   imports: [
     BrowserModule,

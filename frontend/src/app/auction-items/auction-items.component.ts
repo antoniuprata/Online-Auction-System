@@ -14,7 +14,7 @@ export class AuctionItemsComponent implements OnInit {
   auctionItems: AuctionItem[];
   currentUser: any;
 
-  constructor(private httpClient: HttpClient, private router: Router, private authentificationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private router: Router, private authentificationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.currentUser = this.authentificationService.currentUserValue;
@@ -22,7 +22,7 @@ export class AuctionItemsComponent implements OnInit {
   }
 
   getAuctionItems() {
-    this.httpClient.get<AuctionItem[]>('http://localhost:8080/product')
+    this.http.get<AuctionItem[]>('http://localhost:8080/product')
       .subscribe((data) => {
         this.auctionItems = data;
       });
@@ -32,19 +32,26 @@ export class AuctionItemsComponent implements OnInit {
     this.router.navigate(['/view-listing', id]);
   }
 
-  addToWatchlist(id: number) {
-    return this.httpClient.post<any>('http://localhost:8080/watchlist', { emailUser: this.currentUser.email, id: id, })
-    .pipe(map(data => {
+  postToWatchlist(id: number) {
+    return this.http.post<any>(`http://localhost:8080/watchlist`, { emailUser: this.currentUser.email, id: id }, { responseType: 'json' })
+    .pipe(map(user => {
       //this.authentificationService.reloadPage();
-      return data;
+      return user;
     }))
+  }
+
+  addToWatchlist(id: number) {
+    this.http.post<any>(`http://localhost:8080/watchlist`, { emailUser: this.currentUser.email, idProduct: id }, { responseType: 'json' }).subscribe(data => {
+        console.log(data);
+    })
+    /* this.postToWatchlist(id)
     .pipe(first())
     .subscribe(
       (data) => {
       },
       (error) => {
       }
-    );
+    ); */
   }
 
 }
