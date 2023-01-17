@@ -2,7 +2,7 @@
 
 <div class="card" *ngFor="let product of auctionItems">
   <img src="{{'data:image/jpg;base64,' + product.images[0].image}}">
-  <h1>{{product.title}}</h1>
+  <h2>{{product.title}}</h2>
   <p class="price">Starting at ${{product.startingPrice}}</p>
   <p>Category: {{product.category}}</p>
   <p>Description: {{product.description}}</p>

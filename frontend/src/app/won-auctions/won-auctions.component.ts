@@ -18,15 +18,13 @@ export class WonAuctionsComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authentificationService.currentUserValue;
     this.getWonItems();
-    console.log(this.auctionItems);
   }
 
   getWonItems() {
     return this.httpClient.post<any>('http://localhost:8080/product/wonProducts', {emailUser: this.currentUser.email}, { responseType: 'json'})
       .subscribe((data) => {
-        console.log(data);
         this.auctionItems = data;
-        console.log('AUCTION ITEMSs', this.auctionItems);
+        this.auctionItems.filter(auctionItem => auctionItem.endTime = new Date(auctionItem.endTime.toString()));
       });
   }
 

@@ -21,6 +21,7 @@ export class BrowseSculpturesComponent implements OnInit {
     this.httpClient.get<AuctionItem[]>('http://localhost:8080/product')
       .subscribe((data) => {
         this.auctionItems = data;
+        this.auctionItems.filter(auctionItem => auctionItem.endTime = new Date(auctionItem.endTime.toString()));
       });
   }
 

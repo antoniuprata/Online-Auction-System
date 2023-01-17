@@ -25,7 +25,9 @@ export class AuctionItemsComponent implements OnInit {
     this.http.get<AuctionItem[]>('http://localhost:8080/product')
       .subscribe((data) => {
         this.auctionItems = data;
+        this.auctionItems.filter(auctionItem => auctionItem.endTime = new Date(auctionItem.endTime.toString()));
       });
+
   }
 
   viewListing(id: number) {
@@ -44,14 +46,10 @@ export class AuctionItemsComponent implements OnInit {
     this.http.post<any>(`http://localhost:8080/watchlist`, { emailUser: this.currentUser.email, idProduct: id }, { responseType: 'json' }).subscribe(data => {
         console.log(data);
     })
-    /* this.postToWatchlist(id)
-    .pipe(first())
-    .subscribe(
-      (data) => {
-      },
-      (error) => {
-      }
-    ); */
+  }
+
+  showDate(){
+
   }
 
 }

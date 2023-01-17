@@ -6,7 +6,7 @@ export class AuctionItem {
   descriptiopn: string;
   startingPrice: number;
   currentPrice?: number;
-  endTime: Date;
+  endTime: any;
   userEmail?: string;
 }
 

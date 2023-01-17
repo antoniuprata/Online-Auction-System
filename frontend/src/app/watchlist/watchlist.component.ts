@@ -25,6 +25,7 @@ export class WatchlistComponent implements OnInit {
     this.httpClient.get<AuctionItem[]>('http://localhost:8080/watchlist/'+this.currentUser.email)
       .subscribe((data) => {
         this.auctionItems = data;
+        this.auctionItems.filter(auctionItem => auctionItem.endTime = new Date(auctionItem.endTime.toString()));
       });
   }
 
