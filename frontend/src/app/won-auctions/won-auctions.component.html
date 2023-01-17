@@ -1,7 +1,7 @@
 <h1>WON AUCTIONS:</h1>
 
 <div *ngFor="let product of auctionItems">
-  <div class="card" *ngIf="product.user.email === currentUser.email">
+  <div class="card">
     <img src="{{'data:image/jpg;base64,' + product.images[0].image}}">
     <h2>{{product.title}}</h2>
     <p class="price">Starting at ${{product.startingPrice}}</p>

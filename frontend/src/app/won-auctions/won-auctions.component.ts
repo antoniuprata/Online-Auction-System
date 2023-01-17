@@ -24,6 +24,7 @@ export class WonAuctionsComponent implements OnInit {
     return this.httpClient.post<any>('http://localhost:8080/product/wonProducts', {emailUser: this.currentUser.email}, { responseType: 'json'})
       .subscribe((data) => {
         this.auctionItems = data;
+        console.log(this.auctionItems);
         this.auctionItems.filter(auctionItem => auctionItem.endTime = new Date(auctionItem.endTime.toString()));
       });
   }
